@@ -1,0 +1,1875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sai Vineeth Reddy B Y | Business Analyst & Product Analyst</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0b0b10;
+    --bg2: #111118;
+    --bg3: #16161f;
+    --bg4: #1c1c28;
+    --gold: #c9a84c;
+    --gold2: #e8c96a;
+    --gold-dim: rgba(201,168,76,0.12);
+    --gold-border: rgba(201,168,76,0.25);
+    --blue: #4a8fff;
+    --blue-dim: rgba(74,143,255,0.1);
+    --text: #f0ece0;
+    --text2: #a9a49a;
+    --text3: #6b6660;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.12);
+    --radius: 12px;
+    --radius-sm: 6px;
+    --ff-display: 'Playfair Display', Georgia, serif;
+    --ff-body: 'DM Sans', system-ui, sans-serif;
+    --ff-mono: 'DM Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--ff-body);
+    background: var(--bg);
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ─── NOISE TEXTURE ─── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.6;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.1rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(11,11,16,0.85);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: var(--ff-display);
+    font-size: 1.1rem;
+    color: var(--gold);
+    letter-spacing: 0.02em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--text2);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  /* ─── HERO ─── */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8rem 4rem 6rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 30%, transparent 100%);
+    opacity: 0.4;
+  }
+
+  .hero-glow {
+    position: absolute;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%);
+    top: -200px;
+    right: -100px;
+    pointer-events: none;
+  }
+
+  .hero-inner { position: relative; max-width: 900px; }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--gold-dim);
+    border: 1px solid var(--gold-border);
+    color: var(--gold2);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.35rem 0.9rem;
+    border-radius: 999px;
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 0.6s 0.1s ease forwards;
+  }
+
+  .hero-badge::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    display: inline-block;
+  }
+
+  .hero-name {
+    font-family: var(--ff-display);
+    font-size: clamp(3.2rem, 7vw, 5.5rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 0.4rem;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.2s ease forwards;
+  }
+
+  .hero-name span { color: var(--gold); }
+
+  .hero-tagline {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    color: var(--text2);
+    max-width: 660px;
+    margin: 1.5rem 0 2.5rem;
+    font-weight: 300;
+    line-height: 1.6;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.35s ease forwards;
+  }
+
+  .hero-tagline strong { color: var(--text); font-weight: 500; }
+
+  .hero-stats {
+    display: flex;
+    gap: 3rem;
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.5s ease forwards;
+  }
+
+  .hero-stat-num {
+    font-family: var(--ff-display);
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .hero-stat-label {
+    font-size: 0.78rem;
+    color: var(--text3);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-top: 0.25rem;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.6s ease forwards;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--gold);
+    color: #0b0b10;
+    font-family: var(--ff-body);
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 0.85rem 2rem;
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: all 0.2s;
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn-primary:hover {
+    background: var(--gold2);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(201,168,76,0.3);
+  }
+
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    color: var(--text);
+    font-family: var(--ff-body);
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 0.85rem 2rem;
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    border: 1px solid var(--border2);
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+
+  .btn-outline:hover {
+    border-color: var(--gold-border);
+    color: var(--gold2);
+    transform: translateY(-2px);
+  }
+
+  /* ─── SECTIONS ─── */
+  section {
+    padding: 6rem 4rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .section-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-family: var(--ff-display);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  .section-subtitle {
+    font-size: 1.05rem;
+    color: var(--text2);
+    max-width: 600px;
+    font-weight: 300;
+  }
+
+  .section-header { margin-bottom: 4rem; }
+
+  /* ─── DIVIDER ─── */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border2), transparent);
+    margin: 0 4rem;
+  }
+
+  /* ─── ABOUT ─── */
+  #about { background: var(--bg2); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+    max-width: 1100px;
+  }
+
+  .about-text p {
+    color: var(--text2);
+    font-size: 1.05rem;
+    margin-bottom: 1.25rem;
+    font-weight: 300;
+    line-height: 1.8;
+  }
+
+  .about-text p strong { color: var(--text); font-weight: 500; }
+
+  .about-callout {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--gold);
+    border-radius: var(--radius-sm);
+    padding: 1.5rem;
+    margin-top: 2rem;
+    font-style: italic;
+    color: var(--text2);
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  .about-highlights { display: flex; flex-direction: column; gap: 1.5rem; }
+
+  .highlight-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.75rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .highlight-card:hover {
+    border-color: var(--gold-border);
+    transform: translateY(-3px);
+  }
+
+  .hc-icon {
+    font-size: 1.4rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .hc-title {
+    font-weight: 600;
+    color: var(--text);
+    font-size: 0.95rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .hc-text {
+    font-size: 0.88rem;
+    color: var(--text2);
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  /* ─── SKILLS ─── */
+  #skills { background: var(--bg); }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    max-width: 1100px;
+  }
+
+  .skill-category {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2rem;
+    transition: border-color 0.25s;
+  }
+
+  .skill-category:hover { border-color: var(--gold-border); }
+
+  .skill-cat-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .skill-cat-icon {
+    width: 36px;
+    height: 36px;
+    background: var(--gold-dim);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+  }
+
+  .skill-cat-title {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--text);
+  }
+
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+
+  .skill-tag {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text2);
+    background: var(--bg4);
+    border: 1px solid var(--border);
+    padding: 0.3rem 0.75rem;
+    border-radius: 999px;
+    transition: all 0.2s;
+  }
+
+  .skill-tag:hover {
+    border-color: var(--gold-border);
+    color: var(--gold2);
+    background: var(--gold-dim);
+  }
+
+  /* ─── PROJECTS ─── */
+  #projects { background: var(--bg2); }
+
+  .featured-projects { display: flex; flex-direction: column; gap: 2.5rem; margin-bottom: 5rem; }
+
+  .project-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2.5rem;
+    transition: border-color 0.25s, transform 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    height: 3px;
+    width: 0;
+    background: linear-gradient(90deg, var(--gold), var(--blue));
+    transition: width 0.4s ease;
+  }
+
+  .project-card:hover::before { width: 100%; }
+
+  .project-card:hover {
+    border-color: var(--border2);
+    transform: translateY(-4px);
+  }
+
+  .project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .project-number {
+    font-family: var(--ff-mono);
+    font-size: 0.72rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+  }
+
+  .project-title {
+    font-family: var(--ff-display);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.4rem;
+    line-height: 1.2;
+  }
+
+  .project-subtitle {
+    font-size: 0.88rem;
+    color: var(--text2);
+    font-weight: 300;
+  }
+
+  .project-tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tool-tag {
+    font-family: var(--ff-mono);
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--blue);
+    background: var(--blue-dim);
+    border: 1px solid rgba(74,143,255,0.2);
+    padding: 0.25rem 0.6rem;
+    border-radius: var(--radius-sm);
+  }
+
+  .project-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 1.5rem;
+  }
+
+  .project-section-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+
+  .project-section-text {
+    font-size: 0.9rem;
+    color: var(--text2);
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  .project-section-text strong { color: var(--text); font-weight: 500; }
+
+  .project-insights {
+    grid-column: 1 / -1;
+    background: var(--bg4);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 1.25rem 1.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .insights-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 0.75rem;
+  }
+
+  .insight-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: 0.88rem;
+    color: var(--text2);
+    font-weight: 300;
+    line-height: 1.5;
+  }
+
+  .insight-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--gold);
+    margin-top: 0.55rem;
+    flex-shrink: 0;
+  }
+
+  /* ─── PROJECT GITHUB LINK ─── */
+  .project-github {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text3);
+    background: var(--bg4);
+    border: 1px solid var(--border);
+    padding: 0.35rem 0.85rem;
+    border-radius: 999px;
+    text-decoration: none;
+    transition: all 0.2s;
+    margin-top: 1.25rem;
+    align-self: flex-start;
+  }
+
+  .project-github:hover {
+    border-color: var(--gold-border);
+    color: var(--gold2);
+    background: var(--gold-dim);
+  }
+
+  .project-github svg {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+    flex-shrink: 0;
+  }
+
+  /* ─── PROJECT SCREENSHOT ─── */
+  .project-screenshot {
+    margin: 1.5rem 0 0.5rem;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    position: relative;
+    background: var(--bg4);
+  }
+
+  .project-screenshot img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease, opacity 0.3s ease;
+    opacity: 0.85;
+  }
+
+  .project-card:hover .project-screenshot img {
+    transform: scale(1.02);
+    opacity: 1;
+  }
+
+  .screenshot-label {
+    position: absolute;
+    bottom: 0.6rem;
+    right: 0.75rem;
+    font-family: var(--ff-mono);
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text3);
+    background: rgba(11,11,16,0.75);
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+    backdrop-filter: blur(4px);
+  }
+
+  .impact-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    background: rgba(74,143,255,0.08);
+    border: 1px solid rgba(74,143,255,0.2);
+    color: #6aacff;
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 0.3rem 0.75rem;
+    border-radius: 999px;
+    margin-top: 0.75rem;
+  }
+
+  /* ─── ADDITIONAL PROJECTS ─── */
+  .additional-projects-title {
+    font-family: var(--ff-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .additional-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1rem;
+  }
+
+  .add-project-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 1.25rem 1.5rem;
+    transition: border-color 0.2s;
+  }
+
+  .add-project-card:hover { border-color: var(--border2); }
+
+  .add-project-title {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--text);
+    margin-bottom: 0.3rem;
+  }
+
+  .add-project-desc {
+    font-size: 0.83rem;
+    color: var(--text3);
+    font-weight: 300;
+    line-height: 1.5;
+  }
+
+  .add-project-cat {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.4rem;
+  }
+
+  /* ─── EXPERIENCE ─── */
+  #experience { background: var(--bg); }
+
+  .timeline { max-width: 900px; }
+
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 3rem;
+    padding-bottom: 3.5rem;
+    position: relative;
+  }
+
+  .timeline-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: calc(25% + 1.5rem - 1px);
+    top: 2rem;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--border2), var(--border));
+  }
+
+  .timeline-left { position: relative; padding-top: 0.25rem; text-align: right; padding-right: 1rem; }
+
+  .timeline-dot {
+    position: absolute;
+    right: -1.6rem;
+    top: 0.5rem;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: 2px solid var(--bg);
+    box-shadow: 0 0 0 3px var(--gold-border);
+  }
+
+  .timeline-company {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--text);
+  }
+
+  .timeline-location {
+    font-size: 0.78rem;
+    color: var(--text3);
+    margin-top: 0.2rem;
+  }
+
+  .timeline-period {
+    font-family: var(--ff-mono);
+    font-size: 0.75rem;
+    color: var(--gold);
+    margin-top: 0.4rem;
+  }
+
+  .timeline-role {
+    font-family: var(--ff-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 1.25rem;
+    line-height: 1.2;
+  }
+
+  .timeline-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+
+  .timeline-bullets li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-size: 0.92rem;
+    color: var(--text2);
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  .timeline-bullets li::before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--gold);
+    margin-top: 0.58rem;
+    flex-shrink: 0;
+  }
+
+  .timeline-bullets li strong { color: var(--text); font-weight: 500; }
+
+  .timeline-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1.25rem; }
+
+  .timeline-tag {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text3);
+    background: var(--bg4);
+    border: 1px solid var(--border);
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+  }
+
+  /* ─── CERTIFICATIONS ─── */
+  #certifications { background: var(--bg2); }
+
+  .certs-featured-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 3.5rem;
+  }
+
+  .cert-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cert-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .cert-card:hover {
+    border-color: var(--gold-border);
+    transform: translateY(-3px);
+  }
+
+  .cert-card:hover::before { opacity: 1; }
+
+  .cert-org {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+
+  .cert-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--text);
+    line-height: 1.35;
+    margin-bottom: 0.5rem;
+  }
+
+  .cert-type {
+    font-size: 0.78rem;
+    color: var(--text3);
+    font-weight: 300;
+  }
+
+  .cert-icon {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    font-size: 1.2rem;
+    opacity: 0.5;
+  }
+
+  .certs-additional-title {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--text2);
+    margin-bottom: 1rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.75rem;
+  }
+
+  .certs-additional-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 0.75rem;
+  }
+
+  .cert-mini {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 0.9rem 1.1rem;
+    transition: border-color 0.2s;
+  }
+
+  .cert-mini:hover { border-color: var(--border2); }
+
+  .cert-mini-org {
+    font-size: 0.67rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.25rem;
+  }
+
+  .cert-mini-name {
+    font-size: 0.83rem;
+    font-weight: 500;
+    color: var(--text2);
+    line-height: 1.3;
+  }
+
+  /* ─── CONTACT ─── */
+  #contact {
+    background: var(--bg);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contact-glow {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(201,168,76,0.05) 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .contact-inner { position: relative; max-width: 600px; margin: 0 auto; }
+
+  .contact-title {
+    font-family: var(--ff-display);
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 1rem;
+    line-height: 1.1;
+  }
+
+  .contact-text {
+    color: var(--text2);
+    font-size: 1.05rem;
+    font-weight: 300;
+    margin-bottom: 3rem;
+    line-height: 1.7;
+  }
+
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+  }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    color: var(--text2);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 0.85rem 1.5rem;
+    border-radius: var(--radius-sm);
+    transition: all 0.2s;
+  }
+
+  .contact-link:hover {
+    border-color: var(--gold-border);
+    color: var(--gold2);
+    transform: translateY(-2px);
+  }
+
+  .contact-link svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+    padding: 2rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .footer-left {
+    font-family: var(--ff-display);
+    font-size: 0.9rem;
+    color: var(--text3);
+  }
+
+  .footer-left span { color: var(--gold); }
+
+  .footer-right {
+    font-size: 0.78rem;
+    color: var(--text3);
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── SCROLLBAR ─── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--bg4); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--text3); }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 4rem 1.5rem; }
+    #hero { padding: 7rem 1.5rem 4rem; }
+    .divider { margin: 0 1.5rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .project-body { grid-template-columns: 1fr; }
+    .timeline-item { grid-template-columns: 1fr; gap: 0.75rem; }
+    .timeline-item::after { display: none; }
+    .timeline-left { text-align: left; padding-right: 0; padding-left: 1.25rem; }
+    .timeline-dot { right: auto; left: -0.25rem; top: 0.4rem; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+    .hero-stats { gap: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Sai Vineeth Reddy</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <h1 class="hero-name">Sai Vineeth<br><span>Reddy B Y</span></h1>
+    <p class="hero-tagline">
+      <strong>Business Analyst &amp; Product Analyst</strong> with 4.5+ years turning complex business problems into
+      clear, data-driven decisions. I bridge the gap between operational reality and strategic direction —
+      helping teams see what the numbers are actually saying.
+    </p>
+    <div class="hero-stats">
+      <div>
+        <div class="hero-stat-num">4.5+</div>
+        <div class="hero-stat-label">Years Experience</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">100+</div>
+        <div class="hero-stat-label">Analytics Projects</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">3</div>
+        <div class="hero-stat-label">Industry Domains</div>
+      </div>
+      <!-- <div>
+        <div class="hero-stat-num">18%</div>
+        <div class="hero-stat-label">Avg. Efficiency Gain</div>
+      </div> -->
+    </div>
+    <div class="hero-ctas">
+      <a href="#projects" class="btn-primary">View My Work ↓</a>
+      <a href="#contact" class="btn-outline">Get in Touch</a>
+      <a href="https://github.com/saivineethby" target="_blank" class="btn-outline">GitHub →</a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header reveal">
+    <div class="section-label">About Me</div>
+    <h2 class="section-title">The story behind the data</h2>
+  </div>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p>
+        I've spent the last four and a half years doing the same thing in different contexts:
+        <strong>finding out why the business isn't working the way it should, and fixing it.</strong>
+        That's meant building KPI dashboards at scale, automating reporting pipelines, reducing operational
+        bottlenecks, and sitting in rooms with stakeholders where I've had to translate messy data into
+        decisions people can actually act on.
+      </p>
+      <p>
+        At Teleperformance in the UK, that looked like cutting response times by 18% by identifying workflow
+        inefficiencies hidden in the operational data. At Uniworth Enterprises, it meant cleaning 50,000+
+        records and rebuilding reporting pipelines that saved teams 25–30% of their time. At Bharat Electronics,
+        it was developing 10+ production dashboards that gave management the visibility they'd been missing.
+      </p>
+      <p>
+        What I bring to a Business Analyst or Product Analyst role isn't just technical capability —
+        it's the ability to <strong>ask the right question before picking the right tool.</strong> I understand
+        that a dashboard no one reads is not an insight. A recommendation without a business case is just an
+        opinion. I work to close that gap.
+      </p>
+      <div class="about-callout">
+        "I don't think of myself as a data person who learned business — I think of myself as someone
+        who understands business problems and happens to be very good at using data to solve them."
+      </div>
+    </div>
+    <div class="about-highlights reveal">
+      <div class="highlight-card">
+        <div class="hc-icon">⬡</div>
+        <div class="hc-title">Business-First Mindset</div>
+        <div class="hc-text">Every analysis starts with the business question, not the dataset. I focus on outcomes that move the needle — reduced churn, faster decisions, better operations.</div>
+      </div>
+      <div class="highlight-card">
+        <div class="hc-icon">◈</div>
+        <div class="hc-title">Cross-Functional Collaboration</div>
+        <div class="hc-text">Worked across operations, analytics, product, and tech teams. I speak the language of business stakeholders and data engineers equally well.</div>
+      </div>
+      <div class="highlight-card">
+        <div class="hc-icon">◆</div>
+        <div class="hc-title">Measurable Impact</div>
+        <div class="hc-text">18% reduction in response time. 25–30% reporting efficiency gains. 10%+ operational improvement. I track what I do and can speak to the result.</div>
+      </div>
+      <div class="highlight-card">
+        <div class="hc-icon">◇</div>
+        <div class="hc-title">Product Thinking</div>
+        <div class="hc-text">Beyond reporting, I think about why users behave as they do, what friction exists in the customer journey, and how data insights can shape better product decisions.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header reveal">
+    <div class="section-label">Core Competencies</div>
+    <h2 class="section-title">What I bring to the table</h2>
+    <p class="section-subtitle">Depth in business analysis and product thinking, supported by solid data and tooling skills.</p>
+  </div>
+  <div class="skills-grid reveal">
+    <div class="skill-category">
+      <div class="skill-cat-header">
+        <div class="skill-cat-icon">⬡</div>
+        <div class="skill-cat-title">Business Analysis</div>
+      </div>
+      <div class="skill-tags">
+        <span class="skill-tag">Requirements Gathering</span>
+        <span class="skill-tag">Stakeholder Management</span>
+        <span class="skill-tag">Process Improvement</span>
+        <span class="skill-tag">Root Cause Analysis</span>
+        <span class="skill-tag">KPI Definition</span>
+        <span class="skill-tag">Gap Analysis</span>
+        <span class="skill-tag">Business Case Writing</span>
+        <span class="skill-tag">SLA Management</span>
+        <span class="skill-tag">Workflow Optimisation</span>
+      </div>
+    </div>
+    <div class="skill-category">
+      <div class="skill-cat-header">
+        <div class="skill-cat-icon">◈</div>
+        <div class="skill-cat-title">Product &amp; Business Thinking</div>
+      </div>
+      <div class="skill-tags">
+        <span class="skill-tag">Customer Behaviour Analysis</span>
+        <span class="skill-tag">Churn &amp; Retention Analysis</span>
+        <span class="skill-tag">A/B Testing</span>
+        <span class="skill-tag">Hypothesis Testing</span>
+        <span class="skill-tag">Product Metrics</span>
+        <span class="skill-tag">Customer Journey Mapping</span>
+        <span class="skill-tag">Funnel Analysis</span>
+        <span class="skill-tag">Experimentation Design</span>
+        <span class="skill-tag">Market Segmentation</span>
+      </div>
+    </div>
+    <div class="skill-category">
+      <div class="skill-cat-header">
+        <div class="skill-cat-icon">◆</div>
+        <div class="skill-cat-title">Data &amp; Tools</div>
+      </div>
+      <div class="skill-tags">
+        <span class="skill-tag">SQL</span>
+        <span class="skill-tag">Python (Pandas, NumPy)</span>
+        <span class="skill-tag">Power BI</span>
+        <span class="skill-tag">Tableau</span>
+        <span class="skill-tag">Excel (Advanced)</span>
+        <span class="skill-tag">Snowflake</span>
+        <span class="skill-tag">ETL Workflows</span>
+        <span class="skill-tag">Data Cleaning &amp; Validation</span>
+        <span class="skill-tag">Reporting Automation</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-header reveal">
+    <div class="section-label">Portfolio</div>
+    <h2 class="section-title">Projects &amp; Case Studies</h2>
+    <p class="section-subtitle">Real-world analytical work framed as business problems — because that's how they actually start.</p>
+  </div>
+
+  <div class="featured-projects">
+
+    <!-- PROJECT 1 -->
+    <div class="project-card reveal">
+      <div class="project-header">
+        <div>
+          <div class="project-number">01 — FEATURED · PRODUCT ANALYTICS</div>
+          <div class="project-title">User Engagement Analysis<br>Using Yelp Public Data</div>
+          <div class="project-subtitle">Understanding what drives platform engagement and where businesses lose user attention</div>
+        </div>
+        <div class="project-tools">
+          <span class="tool-tag">Python</span>
+          <span class="tool-tag">Pandas</span>
+          <span class="tool-tag">SQL</span>
+          <span class="tool-tag">Tableau</span>
+        </div>
+      </div>
+      <!-- SCREENSHOT: Replace the src below with your own image URL -->
+      <div class="project-screenshot">
+        <img src="Images\1.png" alt="User Engagement Analysis Screenshot" />
+        <!-- -->
+      </div>
+      <div class="project-body">
+        <div>
+          <div class="project-section-label">Business Problem</div>
+          <div class="project-section-text">
+            Platform businesses rely on engagement loops to retain users — but most don't know <strong>which specific behaviours predict long-term retention</strong> versus one-time visits. This project set out to identify the engagement signals that actually matter, using Yelp's public dataset as a proxy for any platform with user-generated content.
+          </div>
+        </div>
+        <div>
+          <div class="project-section-label">Analytical Approach</div>
+          <div class="project-section-text">
+            Segmented users by activity levels and recency. Built engagement cohorts to track drop-off patterns. Applied correlation analysis between review frequency, rating behaviour, and return visit likelihood. Mapped the customer journey from first interaction to high-value user status.
+          </div>
+        </div>
+        <div class="project-insights">
+          <div class="project-section-label">Key Insights &amp; Business Recommendations</div>
+          <div class="insights-list">
+            <div class="insight-item"><div class="insight-dot"></div><span>Users who left 3+ reviews in the first 30 days showed 2× retention rate — onboarding incentives should target this behaviour</span></div>
+            <div class="insight-item"><div class="insight-dot"></div><span>Businesses with response rates above 70% had significantly higher repeat engagement — product teams should prioritise owner reply features</span></div>
+            <div class="insight-item"><div class="insight-dot"></div><span>Photo uploads correlated more strongly with review engagement than star ratings — content type matters for feature prioritisation</span></div>
+            <div class="insight-item"><div class="insight-dot"></div><span>Weekend activity spikes were 3× higher but conversion to return visits was lower — suggesting opportunity for post-weekend re-engagement nudges</span></div>
+          </div>
+          <div class="impact-badge">↑ Informs product engagement roadmap · Retention feature prioritisation</div>
+          <!-- GITHUB: Replace href with your repository URL -->
+          <a href="https://github.com/saivineethby/User-Engagement-Analysis-Project-Using-YELP-" target="_blank" class="project-github">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            View on GitHub
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 2 -->
+    <div class="project-card reveal">
+      <div class="project-header">
+        <div>
+          <div class="project-number">02 — FEATURED · REVENUE &amp; HYPOTHESIS TESTING</div>
+          <div class="project-title">Maximising Revenue Analysis<br>with Hypothesis Testing</div>
+          <div class="project-subtitle">Using statistical rigour to challenge assumptions and identify real revenue levers</div>
+        </div>
+        <div class="project-tools">
+          <span class="tool-tag">Python</span>
+          <span class="tool-tag">SciPy</span>
+          <span class="tool-tag">NumPy</span>
+          <span class="tool-tag">Power BI</span>
+        </div>
+      </div>
+      <!-- SCREENSHOT: Replace the src below with your own image URL -->
+      <div class="project-screenshot">
+        <img src="Images\2.png" alt="Revenue Analysis Screenshot" />
+        <!-- -->
+      </div>
+      <div class="project-body">
+        <div>
+          <div class="project-section-label">Business Problem</div>
+          <div class="project-section-text">
+            Sales and revenue decisions are often based on gut feel or surface-level trends. This project asked: <strong>which pricing, segment, and timing factors genuinely drive revenue?</strong> And which assumptions don't hold up under statistical scrutiny?
+          </div>
+        </div>
+        <div>
+          <div class="project-section-label">Analytical Approach</div>
+          <div class="project-section-text">
+            Ran A/B style hypothesis tests on pricing strategies, customer segments, and promotional timing. Applied t-tests and chi-square tests to validate which differences were statistically significant versus noise. Built a decision framework for future revenue experiments.
+          </div>
+        </div>
+        <div class="project-insights">
+          <div class="project-section-label">Key Insights &amp; Business Recommendations</div>
+          <div class="insights-list">
+            <div class="insight-item"><div class="insight-dot"></div><span>Mid-tier pricing segment showed statistically significantly higher LTV than premium — counter to the assumed revenue hierarchy</span></div>
+            <div class="insight-item"><div class="insight-dot"></div><span>Promotional timing in the first 48 hours post-sign-up had 2.3× the conversion rate of campaigns sent at day 7</span></div>
+            <div class="insight-item"><div class="insight-dot"></div><span>Regional performance gaps that appeared large were shown to be statistically insignificant — budget reallocation was not warranted</span></div>
+            <div class="insight-item"><div class="insight-dot"></div><span>Recommended structured experimentation framework to replace ad hoc revenue decisions going forward</span></div>
+          </div>
+          <div class="impact-badge">↑ Prevents misallocation of marketing budget · Grounds revenue decisions in evidence</div>
+          <!-- GITHUB: Replace href with your repository URL -->
+          <a href="https://github.com/saivineethby/Maximizing-Revenue-Analysis-Project-Hypothesis-Testing-" target="_blank" class="project-github">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            View on GitHub
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 3 -->
+    <div class="project-card reveal">
+      <div class="project-header">
+        <div>
+          <div class="project-number">03 — FEATURED · MARKETING &amp; A/B TESTING</div>
+          <div class="project-title">Marketing Campaign Analysis<br>&amp; A/B Testing</div>
+          <div class="project-subtitle">Determining which campaign strategies convert — and why the others don't</div>
+        </div>
+        <div class="project-tools">
+          <span class="tool-tag">Python</span>
+          <span class="tool-tag">Pandas</span>
+          <span class="tool-tag">Statistics</span>
+          <span class="tool-tag">Tableau</span>
+        </div>
+      </div>
+      <!-- SCREENSHOT: Replace the src below with your own image URL -->
+      <div class="project-screenshot">
+        <img src="Images\3.png" alt="Marketing Campaign A/B Testing Screenshot" />
+       
+      </div>
+      <div class="project-body">
+        <div>
+          <div class="project-section-label">Business Problem</div>
+          <div class="project-section-text">
+            Marketing teams regularly run multiple campaigns simultaneously without a rigorous way to attribute performance. This leads to <strong>budget waste and missed optimisation opportunities.</strong> The objective was to isolate campaign effectiveness, identify audience segments that respond, and recommend where to invest.
+          </div>
+        </div>
+        <div>
+          <div class="project-section-label">Analytical Approach</div>
+          <div class="project-section-text">
+            Designed and analysed A/B test results across multiple campaign variants. Controlled for confounding variables (seasonality, audience overlap). Applied conversion funnel analysis to identify where users dropped off. Segmented results by demographic and behavioural attributes.
+          </div>
+        </div>
+        <div class="project-insights">
+          <div class="project-section-label">Key Insights &amp; Business Recommendations</div>
+          <div class="insights-list">
+            <div class="insight-item"><div class="insight-dot"></div><span>Email campaigns outperformed paid social by 34% in conversion rate — budget reallocation recommended with projected £XX,000 savings</span></div>
+            <div class="insight-item"><div class="insight-dot"></div><span>25–34 age segment had 2× click-through but half the conversion — funnel optimisation needed post-click, not pre-click</span></div>
+            <div class="insight-item"><div class="insight-dot"></div><span>Subject line variant B increased open rates by 18% — small copy changes had outsized impact at scale</span></div>
+            <div class="insight-item"><div class="insight-dot"></div><span>Identified optimal send window (Tuesday 9–11am) that increased engagement by 22% vs. overall average</span></div>
+          </div>
+          <div class="impact-badge">↑ Direct campaign ROI improvement · Channel budget reallocation</div>
+          <!-- GITHUB: Replace href with your repository URL -->
+          <a href="https://github.com/saivineethby/Marketing-Campaign-Analysis-AB-Testing-Project-Project" target="_blank" class="project-github">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            View on GitHub
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 4 -->
+    <div class="project-card reveal">
+      <div class="project-header">
+        <div>
+          <div class="project-number">04 — FEATURED · FINANCIAL &amp; BUSINESS ANALYTICS</div>
+          <div class="project-title">Financial Operations<br>Analytics Platform</div>
+          <div class="project-subtitle">Building visibility into financial performance where there was previously none</div>
+        </div>
+        <div class="project-tools">
+          <span class="tool-tag">SQL</span>
+          <span class="tool-tag">Python</span>
+          <span class="tool-tag">Power BI</span>
+          <span class="tool-tag">Excel</span>
+        </div>
+      </div>
+      <!-- SCREENSHOT: Replace the src below with your own image URL -->
+      <div class="project-screenshot">
+        <img src="Images\4.png" alt="Financial Operations Analytics Screenshot" />
+       
+      </div>
+      <div class="project-body">
+        <div>
+          <div class="project-section-label">Business Problem</div>
+          <div class="project-section-text">
+            Financial operations teams often work from fragmented reports that show <strong>what happened, but not why, and not what to do next.</strong> This project built an integrated analytics layer to surface operational cost drivers, flag anomalies, and provide forward-looking KPI visibility to finance and leadership stakeholders.
+          </div>
+        </div>
+        <div>
+          <div class="project-section-label">Analytical Approach</div>
+          <div class="project-section-text">
+            Integrated data from multiple financial sources via SQL transformations. Built variance analysis models to compare actuals vs. forecast. Created automated anomaly detection for unusual spend patterns. Delivered dashboards that enabled self-service reporting for non-technical stakeholders.
+          </div>
+        </div>
+        <div class="project-insights">
+          <div class="project-section-label">Key Insights &amp; Business Recommendations</div>
+          <div class="insights-list">
+            <div class="insight-item"><div class="insight-dot"></div><span>Identified a recurring end-of-quarter cost spike driven by unplanned procurement — flagged for process governance review</span></div>
+            <div class="insight-item"><div class="insight-dot"></div><span>Vendor cost variance analysis revealed a 12% overspend against contracted rates — actionable for renegotiation</span></div>
+            <div class="insight-item"><div class="insight-dot"></div><span>Automated reporting reduced manual finance team effort by an estimated 8 hours per reporting cycle</span></div>
+            <div class="insight-item"><div class="insight-dot"></div><span>Provided CFO-level visibility through a single dashboard — eliminated 3 separate legacy reports</span></div>
+          </div>
+          <div class="impact-badge">↑ Tangible cost visibility · Automation of manual reporting effort</div>
+          <!-- GITHUB: Replace href with your repository URL -->
+          <a href="https://github.com/saivineethby/Financial_Operations_Analytics_Project" target="_blank" class="project-github">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            View on GitHub
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 5 -->
+    <div class="project-card reveal">
+      <div class="project-header">
+        <div>
+          <div class="project-number">05 — FEATURED · SQL &amp; DATA ENGINEERING</div>
+          <div class="project-title">SQL Data Warehouse<br>Architecture Project</div>
+          <div class="project-subtitle">Designing a scalable analytical foundation — not just for today's questions, but tomorrow's</div>
+        </div>
+        <div class="project-tools">
+          <span class="tool-tag">SQL</span>
+          <span class="tool-tag">Snowflake</span>
+          <span class="tool-tag">ETL</span>
+          <span class="tool-tag">Data Modelling</span>
+        </div>
+      </div>
+      <!-- SCREENSHOT: Replace the src below with your own image URL -->
+      <div class="project-screenshot">
+        <img src="Images\5.png" alt="SQL Data Warehouse Screenshot" />
+       
+      </div>
+      <div class="project-body">
+        <div>
+          <div class="project-section-label">Business Problem</div>
+          <div class="project-section-text">
+            Many organisations sit on data they can't use because it's poorly structured. Analysts spend 60–70% of their time cleaning and preparing data instead of generating insights. This project built a warehouse architecture that <strong>made data trustworthy, accessible, and analysis-ready from the source.</strong>
+          </div>
+        </div>
+        <div>
+          <div class="project-section-label">Analytical Approach</div>
+          <div class="project-section-text">
+            Designed star schema and dimensional models suited to analytical query patterns. Built ETL pipelines handling ingestion, transformation, and loading from raw sources. Implemented data quality checks at each pipeline stage. Documented data dictionary for business stakeholder use.
+          </div>
+        </div>
+        <div class="project-insights">
+          <div class="project-section-label">Key Insights &amp; Business Recommendations</div>
+          <div class="insights-list">
+            <div class="insight-item"><div class="insight-dot"></div><span>Reduced average query time from minutes to seconds through optimised indexing and partitioning strategy</span></div>
+            <div class="insight-item"><div class="insight-dot"></div><span>Single source of truth eliminated conflicting numbers across department reports — a common and costly pain point</span></div>
+            <div class="insight-item"><div class="insight-dot"></div><span>Self-service BI layer built on top enabled non-technical stakeholders to answer their own questions without analyst involvement</span></div>
+            <div class="insight-item"><div class="insight-dot"></div><span>Data quality gate reduced downstream errors by flagging issues at ingestion rather than discovery</span></div>
+          </div>
+          <div class="impact-badge">↑ Infrastructure for scalable analytics · Analyst time freed for high-value work</div>
+          <!-- GITHUB: Replace href with your repository URL -->
+          <a href="https://github.com/saivineethby/sql-data-warehouse-project" target="_blank" class="project-github">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            View on GitHub
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 6 -->
+    <div class="project-card reveal">
+      <div class="project-header">
+        <div>
+          <div class="project-number">06 — FEATURED · OPERATIONS &amp; PROCUREMENT ANALYTICS</div>
+          <div class="project-title">Vendor Performance<br>Analysis</div>
+          <div class="project-subtitle">Turning supplier data into procurement decisions — identifying who to trust, who to renegotiate with, and who to drop</div>
+        </div>
+        <div class="project-tools">
+          <span class="tool-tag">Python</span>
+          <span class="tool-tag">SQL</span>
+          <span class="tool-tag">Excel</span>
+          <span class="tool-tag">Power BI</span>
+        </div>
+      </div>
+      <!-- SCREENSHOT: Replace the src below with your own image URL -->
+      <div class="project-screenshot">
+        <img src="Images\6.png" alt="Vendor Performance Analysis Screenshot" />
+       
+      </div>
+      <div class="project-body">
+        <div>
+          <div class="project-section-label">Business Problem</div>
+          <div class="project-section-text">
+            Procurement teams often manage dozens of vendors without a consistent, data-driven view of who is actually performing. Decisions about contract renewals, spend allocation, and supplier rationalisation are made on relationship history and gut feel rather than evidence. This project built a <strong>structured vendor performance framework</strong> to support objective, defensible procurement decisions.
+          </div>
+        </div>
+        <div>
+          <div class="project-section-label">Analytical Approach</div>
+          <div class="project-section-text">
+            Aggregated supplier data across cost, delivery reliability, quality, and SLA adherence metrics. Built a weighted scoring model to rank vendors across performance dimensions. Conducted cost variance analysis comparing contracted vs. actual spend. Segmented vendors into tiers to prioritise management attention and renegotiation focus.
+          </div>
+        </div>
+        <div class="project-insights">
+          <div class="project-section-label">Key Insights &amp; Business Recommendations</div>
+          <div class="insights-list">
+            <div class="insight-item"><div class="insight-dot"></div><span>Top 20% of vendors by spend were responsible for 65% of delivery delays — concentration risk flagged for procurement leadership</span></div>
+            <div class="insight-item"><div class="insight-dot"></div><span>Cost variance analysis revealed consistent overspend against contracted rates with 3 specific suppliers — immediate renegotiation recommended with estimated savings potential identified</span></div>
+            <div class="insight-item"><div class="insight-dot"></div><span>Vendor scoring model identified 2 high-spend, low-performance suppliers suitable for replacement — reducing dependency risk</span></div>
+            <div class="insight-item"><div class="insight-dot"></div><span>Delivered a self-service vendor scorecard dashboard enabling procurement managers to track performance without analyst involvement</span></div>
+          </div>
+          <div class="impact-badge">↑ Cost savings through renegotiation · Procurement risk reduction · Self-service reporting</div>
+          <!-- GITHUB: Replace href with your repository URL -->
+          <a href="https://github.com/saivineethby/Vendor-Performance-Analysis-Project" target="_blank" class="project-github">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            View on GitHub
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /featured -->
+
+  <!-- ADDITIONAL PROJECTS -->
+  <div class="additional-projects-title reveal">Additional Projects</div>
+  <div class="additional-grid reveal">
+
+    <div class="add-project-card">
+      <div class="add-project-cat">Retail &amp; Marketing Analytics</div>
+      <div class="add-project-title">Retail and Marketing Analytics Project</div>
+      <div class="add-project-desc">Analysed retail sales patterns, promotional effectiveness, and customer segmentation across multiple product lines. Built dashboards enabling category managers to identify high-margin opportunities and underperforming SKUs.</div>
+    </div>
+
+    <div class="add-project-card">
+      <div class="add-project-cat">Travel &amp; Consumer Analytics</div>
+      <div class="add-project-title">Airlines Data Analysis Project</div>
+      <div class="add-project-desc">Explored airline passenger data to identify route profitability, delay patterns, and customer satisfaction drivers. Translated findings into operational recommendations for route planning and customer experience teams.</div>
+    </div>
+
+    <div class="add-project-card">
+      <div class="add-project-cat">Hypothesis Testing</div>
+      <div class="add-project-title">Hotel Bookings Analysis — Hypothesis Project</div>
+      <div class="add-project-desc">Applied statistical hypothesis testing to hotel booking patterns, testing assumptions about cancellation rates, lead time, and seasonality. Helped validate (or reject) common pricing and availability assumptions held by the ops team.</div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header reveal">
+    <div class="section-label">Professional Experience</div>
+    <h2 class="section-title">Where I've delivered impact</h2>
+    <p class="section-subtitle">4.5+ years across consumer operations, data analytics, and engineering — all through a Business Analyst lens.</p>
+  </div>
+
+  <div class="timeline reveal">
+
+    <!-- JOB 1 -->
+    <div class="timeline-item">
+      <div class="timeline-left">
+        <div class="timeline-dot"></div>
+        <div class="timeline-company">Teleperformance</div>
+        <div class="timeline-location">United Kingdom</div>
+        <div class="timeline-period">May,2024 - Current</div>
+      </div>
+      <div>
+        <div class="timeline-role">Customer Operations &amp; Analytics Specialist</div>
+        <ul class="timeline-bullets">
+          <li>Operated in a <strong>Business Analyst capacity</strong>, analysing customer and operational data to identify process gaps and improvement opportunities that were invisible in headline metrics</li>
+          <li>Managed 100+ weekly cases with full SLA adherence — built real-time performance tracking dashboards that gave team leaders visibility they hadn't had before</li>
+          <li><strong>Reduced average response time by 18%</strong> through workflow redesign informed by root cause analysis of delay patterns across 3 months of operational data</li>
+          <li>Built KPI dashboards in Excel and Power BI that replaced 4 manually-compiled weekly reports, freeing up ~5 hours of analyst time per week</li>
+          <li>Collaborated with cross-functional stakeholders to translate operational pain points into structured requirements, then validated solutions against business outcomes</li>
+          <li>Analysed customer behaviour patterns and fed insights into <strong>product and service improvement discussions</strong> — including recommendations that shaped the handling process for two recurring issue types</li>
+        </ul>
+        <div class="timeline-tags">
+          <span class="timeline-tag">Business Analysis</span>
+          <span class="timeline-tag">Power BI</span>
+          <span class="timeline-tag">Process Improvement</span>
+          <span class="timeline-tag">Root Cause Analysis</span>
+          <span class="timeline-tag">Stakeholder Management</span>
+          <span class="timeline-tag">KPI Tracking</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- JOB 2 -->
+    <div class="timeline-item">
+      <div class="timeline-left">
+        <div class="timeline-dot"></div>
+        <div class="timeline-company">Uniworth Enterprises</div>
+        <div class="timeline-location">India</div>
+        <div class="timeline-period">Feb,2020 - Dec,2021</div>
+      </div>
+      <div>
+        <div class="timeline-role">Data Engineer Intern</div>
+        
+        <ul class="timeline-bullets">
+          <li>Functioned as a Business/Data Analyst — the primary bridge between <strong>stakeholder reporting needs and the data infrastructure</strong> that could support them</li>
+          <li>Built and maintained ETL workflows using SQL, Python, and Snowflake, handling ingestion and transformation of data across multiple business systems</li>
+          <li><strong>Improved reporting efficiency by 25–30%</strong> through automation of previously manual reporting processes — eliminating recurring analyst work on low-value data preparation tasks</li>
+          <li>Cleaned and validated 50,000+ records to ensure data integrity across business-critical reports that fed leadership decision-making</li>
+          <li>Delivered Power BI and Tableau dashboards tracking KPIs across sales, operations, and finance — with self-service capability enabling non-analysts to explore data independently</li>
+          <li>Provided analysis that directly supported <strong>product and service optimisation decisions</strong>, including a customer churn analysis that led to a revised retention process</li>
+        </ul>
+        <div class="timeline-tags">
+          <span class="timeline-tag">SQL</span>
+          <span class="timeline-tag">Python</span>
+          <span class="timeline-tag">Snowflake</span>
+          <span class="timeline-tag">ETL</span>
+          <span class="timeline-tag">Power BI</span>
+          <span class="timeline-tag">Tableau</span>
+          <span class="timeline-tag">Data Quality</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- JOB 3 -->
+    <div class="timeline-item">
+      <div class="timeline-left">
+        <div class="timeline-dot"></div>
+        <div class="timeline-company">Bharat Electronics Limited</div>
+        <div class="timeline-location">India</div>
+        <div class="timeline-period">Feb,2019 - Feb,2020 (Early Career)</div>
+      </div>
+      <div>
+        <div class="timeline-role">Graduate Analyst Trainee</div>
+        <ul class="timeline-bullets">
+          <li>Contributed to analytical business support in a highly structured engineering organisation — developing the discipline to work with large operational datasets and translate findings for non-technical audiences</li>
+          <li>Developed <strong>10+ MIS dashboards</strong> tracking production performance, workflow efficiency, and operational KPIs — giving management the first consolidated view of production health</li>
+          <li>Analysed 20,000+ records to surface trends, identify inefficiencies, and present findings to cross-functional teams with improvement recommendations</li>
+          <li>Contributed to a <strong>10%+ operational efficiency improvement</strong> through data-driven insights shared with production management on scheduling and resource utilisation</li>
+          <li>Collaborated across departments to gather reporting requirements and ensure dashboards answered the questions leadership was actually asking</li>
+        </ul>
+        <div class="timeline-tags">
+          <span class="timeline-tag">MIS Reporting</span>
+          <span class="timeline-tag">Excel</span>
+          <span class="timeline-tag">Data Analysis</span>
+          <span class="timeline-tag">Operational Intelligence</span>
+          <span class="timeline-tag">Cross-functional Collaboration</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-header reveal">
+    <div class="section-label">Certifications &amp; Learning</div>
+    <h2 class="section-title">Continuous professional development</h2>
+    <p class="section-subtitle">Industry simulations from top-tier firms, supplemented by technical and domain certifications.</p>
+  </div>
+
+  <div class="certs-featured-grid reveal">
+
+    <div class="cert-card">
+      <div class="cert-icon">◆</div>
+      <div class="cert-org">BCG</div>
+      <div class="cert-name">Data Science Job Simulation</div>
+      <div class="cert-type">Industry Simulation · Analytics &amp; Strategy</div>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-icon">◆</div>
+      <div class="cert-org">Deloitte</div>
+      <div class="cert-name">Data Analytics Job Simulation</div>
+      <div class="cert-type">Industry Simulation · Business Analytics</div>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-icon">◆</div>
+      <div class="cert-org">Quantium</div>
+      <div class="cert-name">Data Analytics Job Simulation</div>
+      <div class="cert-type">Industry Simulation · Retail Analytics</div>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-icon">◆</div>
+      <div class="cert-org">British Airways</div>
+      <div class="cert-name">Data Science Job Simulation</div>
+      <div class="cert-type">Industry Simulation · Predictive Analytics</div>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-icon">◆</div>
+      <div class="cert-org">Electronic Arts</div>
+      <div class="cert-name">Product Management Job Simulation</div>
+      <div class="cert-type">Industry Simulation · Product Strategy</div>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-icon">◆</div>
+      <div class="cert-org">Tata Group</div>
+      <div class="cert-name">Data Visualisation: Empowering Business with Effective Insights</div>
+      <div class="cert-type">Technical Certification · Data Storytelling</div>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-icon">◆</div>
+      <div class="cert-org">Citi</div>
+      <div class="cert-name">Quantitative Analysis Job Simulation</div>
+      <div class="cert-type">Industry Simulation · Financial Analytics</div>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-icon">◆</div>
+      <div class="cert-org">CFI</div>
+      <div class="cert-name">Careers in Finance</div>
+      <div class="cert-type">Professional Certification · Financial Domain</div>
+    </div>
+
+  </div>
+
+  <div class="certs-additional-title reveal">Additional Certifications</div>
+  <div class="certs-additional-grid reveal">
+
+    <div class="cert-mini">
+      <div class="cert-mini-org">BCG</div>
+      <div class="cert-mini-name">Introduction to Data for Decision Makers</div>
+    </div>
+    <div class="cert-mini">
+      <div class="cert-mini-org">J.P. Morgan</div>
+      <div class="cert-mini-name">Quantitative Research Job Simulation</div>
+    </div>
+    <div class="cert-mini">
+      <div class="cert-mini-org">Lloyds Banking Group</div>
+      <div class="cert-mini-name">Data Science Job Simulation</div>
+    </div>
+    <div class="cert-mini">
+      <div class="cert-mini-org">Cisco</div>
+      <div class="cert-mini-name">Ethical Hacker Certification</div>
+    </div>
+    <div class="cert-mini">
+      <div class="cert-mini-org">Cisco</div>
+      <div class="cert-mini-name">Introduction to Cybersecurity</div>
+    </div>
+    <div class="cert-mini">
+      <div class="cert-mini-org">AIG</div>
+      <div class="cert-mini-name">Cybersecurity Job Simulation</div>
+    </div>
+    <div class="cert-mini">
+      <div class="cert-mini-org">Mastercard</div>
+      <div class="cert-mini-name">Cybersecurity Job Simulation</div>
+    </div>
+    <div class="cert-mini">
+      <div class="cert-mini-org">Telstra</div>
+      <div class="cert-mini-name">Cybersecurity Job Simulation</div>
+    </div>
+    <div class="cert-mini">
+      <div class="cert-mini-org">DLA Piper</div>
+      <div class="cert-mini-name">Global Cyber with Data Privacy Simulation</div>
+    </div>
+    <div class="cert-mini">
+      <div class="cert-mini-org">ANZ</div>
+      <div class="cert-mini-name">Cyber Security Management</div>
+    </div>
+    <div class="cert-mini">
+      <div class="cert-mini-org">Skyfi Labs</div>
+      <div class="cert-mini-name">IoT Data Analytics Internship</div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-glow"></div>
+  <div class="contact-inner reveal">
+    <div class="section-label" style="text-align:center; margin-bottom: 1.5rem;">Get in Touch</div>
+    <h2 class="contact-title">Let's work on something that matters.</h2>
+    <p class="contact-text">
+      I'm open to Business Analyst, Product Analyst, and Data/Operations Analyst roles across the UK and India.
+      If you're looking for someone who can identify what the business problem actually is — then use data to solve it —
+      I'd like to hear from you.
+    </p>
+    <div class="contact-links">
+      <a href="mailto:bysvreddyanalyst@gmail.com" class="contact-link">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        Email Me
+      </a>
+      <a href="https://www.linkedin.com/in/sai-vineeth-by" target="_blank" class="contact-link">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+      <a href="https://github.com/saivineethby/" target="_blank" class="contact-link">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+        GitHub
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">Sai <span>Vineeth Reddy</span> B Y</div>
+  <div class="footer-right">Business Analyst · Product Analyst · UK &amp; India</div>
+</footer>
+
+<script>
+  // Intersection Observer for reveal animations
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => observer.observe(el));
+
+  // Smooth active nav highlighting
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 120) current = s.getAttribute('id');
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--gold)' : '';
+    });
+  });
+</script>
+</body>
+</html>
